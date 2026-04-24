@@ -25,22 +25,16 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
-    const loadUser = useCallback(async () => {
-  if (!localStorage.getItem('token')) {
-    setLoading(false);
-    return;
-  }
-
-  try {
-    const res = await authAPI.getMe();
-    setUser(res.data.data);
-  } catch (error) {
-    console.error('Failed to load user:', error);
-    logout();
-  } finally {
-    setLoading(false);
-  }
-}, [logout]);
+    try {
+      const res = await authAPI.getMe();
+      setUser(res.data.data);
+    } catch (error) {
+      console.error('Failed to load user:', error);
+      logout();
+    } finally {
+      setLoading(false);
+    }
+  }, [logout]);
 
   useEffect(() => {
     loadUser();
@@ -87,15 +81,17 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{
-      user,
-      token,
-      loading,
-      login,
-      register,
-      logout,
-      isAuthenticated: !!token && !!user
-    }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        token,
+        loading,
+        login,
+        register,
+        logout,
+        isAuthenticated: !!token && !!user
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
