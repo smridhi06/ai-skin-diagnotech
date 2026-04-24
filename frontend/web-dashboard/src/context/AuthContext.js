@@ -25,16 +25,22 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
-    try {
-      const res = await authAPI.getMe();
-      setUser(res.data.data);
-    } catch (error) {
-      console.error('Failed to load user:', error);
-      logout();
-    } finally {
-      setLoading(false);
-    }
-  }, [logout]);
+    const loadUser = useCallback(async () => {
+  if (!localStorage.getItem('token')) {
+    setLoading(false);
+    return;
+  }
+
+  try {
+    const res = await authAPI.getMe();
+    setUser(res.data.data);
+  } catch (error) {
+    console.error('Failed to load user:', error);
+    logout();
+  } finally {
+    setLoading(false);
+  }
+}, [logout]);
 
   useEffect(() => {
     loadUser();
