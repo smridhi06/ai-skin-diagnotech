@@ -124,3 +124,19 @@ process.on('unhandledRejection', (err) => {
   console.error('❌ Unhandled Rejection:', err);
   server.close(() => process.exit(1));
 });
+
+app.get("/", (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: "AI Skin DiagnoTech API is running",
+    status: "healthy"
+  });
+});
+
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    service: "AI Skin DiagnoTech",
+    timestamp: new Date()
+  });
+});
