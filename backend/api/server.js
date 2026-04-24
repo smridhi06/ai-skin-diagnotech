@@ -140,3 +140,9 @@ app.get("/health", (req, res) => {
     timestamp: new Date()
   });
 });
+
+
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
