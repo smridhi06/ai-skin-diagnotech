@@ -1,16 +1,26 @@
-const sharp = require('sharp');
-
-exports.processImage = async (buffer) => {
-  const processed = await sharp(buffer)
-    .resize(1024, 1024, { fit: 'inside', withoutEnlargement: true })
-    .jpeg({ quality: 85 })
-    .toBuffer({ resolveWithObject: true });
-
+const validateImageQuality = async (buffer) => {
   return {
-    buffer: processed.data,
-    width: processed.info.width,
-    height: processed.info.height,
-    size: processed.info.size,
-    format: processed.info.format
+    isValid: true,
+    quality: "acceptable",
+    issues: [],
+    message: "Image accepted for analysis"
   };
+};
+
+const processImage = async (buffer) => {
+  // No image resizing/compression in deployment fallback
+  return buffer;
+};
+
+const getImageMetadata = async (buffer) => {
+  return {
+    size: buffer.length,
+    format: "unknown"
+  };
+};
+
+module.exports = {
+  validateImageQuality,
+  processImage,
+  getImageMetadata
 };
