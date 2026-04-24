@@ -6,4 +6,5 @@ const DashboardPage = () => (
   <MainLayout><DashboardHome /></MainLayout>
 );
 
+
 export default DashboardPage;
