@@ -1,11 +1,11 @@
 import React from 'react';
 import {
   Paper, Typography, Box, Grid, Chip, Button,
-  LinearProgress, Alert, Card, CardContent, Divider, List, ListItem, ListItemIcon, ListItemText
+  LinearProgress, Alert, Card, CardContent,  List, ListItem, ListItemIcon, ListItemText
 } from '@mui/material';
 import {
   CheckCircle, Warning, LocalHospital, Refresh,
-  Healing, Block, ArrowForward
+  Healing, Block, 
 } from '@mui/icons-material';
 import { getUrgencyColor } from '../../utils/helpers';
 

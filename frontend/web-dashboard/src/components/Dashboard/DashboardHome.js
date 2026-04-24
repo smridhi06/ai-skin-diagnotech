@@ -10,8 +10,8 @@ const DashboardHome = () => {
   const [stats, setStats] = useState({});
   const [scans, setScans] = useState([]);
   const [mlStatus, setMlStatus] = useState(null);
-  const { user } = useAuth();
-
+  const { user } =  useAuth();
+  const [, setLoading] = useState(false);
   useEffect(() => {
     loadDashboardData();
   }, []);

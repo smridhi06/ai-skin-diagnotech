@@ -9,12 +9,8 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (token) {
-      loadUser();
-    } else {
-      setLoading(false);
-    }
-  }, [token]);
+     loadUser();
+  }, [loadUser]);
 
   const loadUser = async () => {
     try {
